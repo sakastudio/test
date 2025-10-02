@@ -10,45 +10,6 @@ function updateScrollProgress() {
 
 window.addEventListener('scroll', updateScrollProgress);
 
-// ===== カスタムカーソルフォロワー =====
-const cursorFollower = document.querySelector('.cursor-follower');
-if (cursorFollower) {
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorFollower.classList.add('active');
-    });
-
-    // スムーズなカーソル追従
-    function animateCursor() {
-        const delay = 0.15;
-        followerX += (mouseX - followerX) * delay;
-        followerY += (mouseY - followerY) * delay;
-
-        cursorFollower.style.left = followerX + 'px';
-        cursorFollower.style.top = followerY + 'px';
-
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // ホバー可能な要素でカーソル拡大
-    const hoverTargets = document.querySelectorAll('a, button, .gallery-item, .character-icon');
-    hoverTargets.forEach(target => {
-        target.addEventListener('mouseenter', () => {
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.8)';
-            cursorFollower.style.borderColor = '#4CAF50';
-        });
-        target.addEventListener('mouseleave', () => {
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorFollower.style.borderColor = '#2196F3';
-        });
-    });
-}
-
 // ===== ナビゲーション =====
 const navbar = document.getElementById('navbar');
 const hamburger = document.querySelector('.hamburger');

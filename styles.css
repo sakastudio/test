@@ -22,7 +22,7 @@
     --gradient-hero: linear-gradient(135deg, #1976D2 0%, #2196F3 40%, #00BCD4 70%, #FFC107 100%);
     --gradient-accent: linear-gradient(135deg, #FF9800 0%, #FFC107 100%);
     --gradient-cosmic: linear-gradient(135deg, #2196F3 0%, #00BCD4 30%, #4CAF50 60%, #FFC107 100%);
-    --gradient-overlay: linear-gradient(135deg, rgba(33, 150, 243, 0.9) 0%, rgba(0, 188, 212, 0.85) 100%);
+    --gradient-overlay: linear-gradient(135deg, rgba(33, 150, 243, 0.7) 0%, rgba(0, 188, 212, 0.65) 100%);
 
     /* シャドウシステム - 多層で立体的 */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -86,25 +86,6 @@ a {
     z-index: 9999;
     transition: width 0.1s linear;
     box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
-}
-
-/* ===== カスタムカーソルエフェクト ===== */
-.cursor-follower {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transition: var(--transition-fast);
-    opacity: 0;
-    transform: translate(-50%, -50%);
-}
-
-.cursor-follower.active {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.5);
 }
 
 /* ===== ナビゲーションバー - グラスモーフィズム ===== */
@@ -531,7 +512,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(33, 150, 243, 0.92) 0%, rgba(0, 188, 212, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.7) 0%, rgba(0, 188, 212, 0.65) 100%);
     z-index: 0;
 }
 
@@ -644,7 +625,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 188, 212, 0.92) 0%, rgba(76, 175, 80, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.7) 0%, rgba(76, 175, 80, 0.65) 100%);
     z-index: 0;
 }
 
@@ -811,7 +792,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(25, 118, 210, 0.92) 0%, rgba(33, 150, 243, 0.88) 50%, rgba(0, 188, 212, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(25, 118, 210, 0.7) 0%, rgba(33, 150, 243, 0.65) 50%, rgba(0, 188, 212, 0.6) 100%);
     z-index: 0;
 }
 
@@ -873,7 +854,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255, 152, 0, 0.92) 0%, rgba(255, 193, 7, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.7) 0%, rgba(255, 193, 7, 0.65) 100%);
     z-index: 0;
 }
 
@@ -1075,7 +1056,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(76, 175, 80, 0.92) 0%, rgba(0, 188, 212, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.7) 0%, rgba(0, 188, 212, 0.65) 100%);
     z-index: 0;
 }
 
@@ -1182,7 +1163,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(33, 150, 243, 0.92) 0%, rgba(76, 175, 80, 0.88) 50%, rgba(255, 193, 7, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.7) 0%, rgba(76, 175, 80, 0.65) 50%, rgba(255, 193, 7, 0.6) 100%);
     z-index: 0;
 }
 
@@ -1257,7 +1238,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 188, 212, 0.92) 0%, rgba(33, 150, 243, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.7) 0%, rgba(33, 150, 243, 0.65) 100%);
     z-index: 0;
 }
 
@@ -1354,7 +1335,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(76, 175, 80, 0.92) 0%, rgba(255, 152, 0, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.7) 0%, rgba(255, 152, 0, 0.65) 100%);
     z-index: 0;
 }
 
@@ -1473,7 +1454,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(25, 118, 210, 0.95) 0%, rgba(0, 188, 212, 0.92) 50%, rgba(76, 175, 80, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(25, 118, 210, 0.75) 0%, rgba(0, 188, 212, 0.7) 50%, rgba(76, 175, 80, 0.65) 100%);
     z-index: 0;
 }
 
