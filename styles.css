@@ -680,15 +680,21 @@ section {
     align-items: center;
     opacity: 0;
     transform: translateY(50px);
-    filter: blur(10px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .feature-block.animate-in {
     opacity: 1;
     transform: translateY(0);
+}
+
+.feature-block .feature-image {
+    filter: blur(10px);
+    transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-block.animate-in .feature-image {
     filter: blur(0px);
 }
 

@@ -234,9 +234,8 @@ const featureBlocks = document.querySelectorAll('.feature-block');
 const quickAnimateElements = document.querySelectorAll('.character-icon, .mod-feature, .gallery-item, .social-link');
 const overviewElements = document.querySelectorAll('.overview-concept, .overview-release');
 
-// ゲームの特徴にブラー効果を追加
+// ゲームの特徴を監視（ブラーはCSSで画像のみに適用）
 featureBlocks.forEach(el => {
-    el.style.filter = 'blur(10px)';
     featureObserver.observe(el);
 });
 
