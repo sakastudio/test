@@ -166,33 +166,34 @@
         <div class="container">
             <h2 class="section-title">キャラクター</h2>
             <h3 class="characters-subtitle">仲間との絆を作る</h3>
-            <div class="characters-grid">
-                <!-- キャラクター1 -->
-                <div class="character-card" data-character="1">
-                    <div class="character-image">
-                        <img src="assets/images/character1.png" alt="キャラクター1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'500\'%3E%3Crect fill=\'%23334155\' width=\'300\' height=\'500\'/%3E%3Ctext fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3Eキャラクター1%3C/text%3E%3C/svg%3E'">
+
+            <!-- キャラクターアイコン -->
+            <div class="character-icons">
+                <div class="character-icon active" data-character="1">
+                    <div class="character-icon-image">
+                        <img src="assets/images/character1.png" alt="アイリス" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Ccircle fill=\'%23334155\' cx=\'75\' cy=\'75\' r=\'75\'/%3E%3Ctext fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3Eアイリス%3C/text%3E%3C/svg%3E'">
                     </div>
-                    <h4 class="character-name">アイリス</h4>
-                    <p class="character-role">技術者</p>
+                    <p class="character-icon-name">アイリス</p>
                 </div>
 
-                <!-- キャラクター2 -->
-                <div class="character-card" data-character="2">
-                    <div class="character-image">
-                        <img src="assets/images/character2.png" alt="キャラクター2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'500\'%3E%3Crect fill=\'%23334155\' width=\'300\' height=\'500\'/%3E%3Ctext fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3Eキャラクター2%3C/text%3E%3C/svg%3E'">
+                <div class="character-icon" data-character="2">
+                    <div class="character-icon-image">
+                        <img src="assets/images/character2.png" alt="レオ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Ccircle fill=\'%23334155\' cx=\'75\' cy=\'75\' r=\'75\'/%3E%3Ctext fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3Eレオ%3C/text%3E%3C/svg%3E'">
                     </div>
-                    <h4 class="character-name">レオ</h4>
-                    <p class="character-role">探検家</p>
+                    <p class="character-icon-name">レオ</p>
                 </div>
 
-                <!-- キャラクター3 -->
-                <div class="character-card" data-character="3">
-                    <div class="character-image">
-                        <img src="assets/images/character3.png" alt="キャラクター3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'500\'%3E%3Crect fill=\'%23334155\' width=\'300\' height=\'500\'/%3E%3Ctext fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3Eキャラクター3%3C/text%3E%3C/svg%3E'">
+                <div class="character-icon" data-character="3">
+                    <div class="character-icon-image">
+                        <img src="assets/images/character3.png" alt="ルナ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Ccircle fill=\'%23334155\' cx=\'75\' cy=\'75\' r=\'75\'/%3E%3Ctext fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3Eルナ%3C/text%3E%3C/svg%3E'">
                     </div>
-                    <h4 class="character-name">ルナ</h4>
-                    <p class="character-role">研究者</p>
+                    <p class="character-icon-name">ルナ</p>
                 </div>
+            </div>
+
+            <!-- キャラクター詳細表示エリア -->
+            <div class="character-display" id="characterDisplay">
+                <!-- キャラクター詳細がJavaScriptで挿入されます -->
             </div>
         </div>
     </section>

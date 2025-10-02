@@ -85,7 +85,6 @@ trailerModal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeTrailerModal();
-        closeCharacterModalFunc();
     }
 });
 
@@ -95,11 +94,9 @@ function closeTrailerModal() {
     document.body.style.overflow = 'auto';
 }
 
-// ===== キャラクターモーダル =====
-const characterCards = document.querySelectorAll('.character-card');
-const characterModal = document.getElementById('characterModal');
-const closeCharacterModal = document.getElementById('closeCharacterModal');
-const characterDetail = document.getElementById('characterDetail');
+// ===== キャラクター表示 =====
+const characterIcons = document.querySelectorAll('.character-icon');
+const characterDisplay = document.getElementById('characterDisplay');
 
 // キャラクターデータ
 const charactersData = {
@@ -129,16 +126,13 @@ const charactersData = {
     }
 };
 
-// キャラクターカードクリック
-characterCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const characterId = card.getAttribute('data-character');
-        const character = charactersData[characterId];
+// キャラクター詳細を表示する関数
+function displayCharacter(characterId) {
+    const character = charactersData[characterId];
+    const placeholderSrc = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600'%3E%3Crect fill='%23334155' width='400' height='600'/%3E%3Ctext fill='%2394a3b8' font-family='sans-serif' font-size='24' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E${character.name}%3C/text%3E%3C/svg%3E`;
 
-        // プレースホルダー画像のsrcを設定
-        const placeholderSrc = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='500'%3E%3Crect fill='%23334155' width='300' height='500'/%3E%3Ctext fill='%2394a3b8' font-family='sans-serif' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E${character.name}%3C/text%3E%3C/svg%3E`;
-
-        characterDetail.innerHTML = `
+    characterDisplay.innerHTML = `
+        <div class="character-detail-content">
             <div class="character-detail-image">
                 <img src="${character.image}" alt="${character.name}" onerror="this.src='${placeholderSrc}'">
             </div>
@@ -155,28 +149,34 @@ characterCards.forEach(card => {
                 <h4>関係性</h4>
                 <p>${character.relationship}</p>
             </div>
-        `;
+        </div>
+    `;
 
-        characterModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    // アニメーション追加
+    characterDisplay.style.opacity = '0';
+    setTimeout(() => {
+        characterDisplay.style.opacity = '1';
+    }, 10);
+}
+
+// キャラクターアイコンクリック
+characterIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+        const characterId = icon.getAttribute('data-character');
+
+        // すべてのアイコンからactiveクラスを削除
+        characterIcons.forEach(i => i.classList.remove('active'));
+
+        // クリックされたアイコンにactiveクラスを追加
+        icon.classList.add('active');
+
+        // キャラクター詳細を表示
+        displayCharacter(characterId);
     });
 });
 
-// キャラクターモーダルを閉じる
-closeCharacterModal.addEventListener('click', () => {
-    closeCharacterModalFunc();
-});
-
-characterModal.addEventListener('click', (e) => {
-    if (e.target === characterModal) {
-        closeCharacterModalFunc();
-    }
-});
-
-function closeCharacterModalFunc() {
-    characterModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+// 初期表示（アイリス）
+displayCharacter('1');
 
 // ===== スクロールアニメーション =====
 const observerOptions = {
@@ -195,7 +195,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // アニメーション対象の要素
 const animateElements = document.querySelectorAll(
-    '.feature-block, .character-card, .mod-feature, .gallery-item, .press-item, .social-link'
+    '.feature-block, .character-icon, .mod-feature, .gallery-item, .press-item, .social-link'
 );
 
 animateElements.forEach(el => {
