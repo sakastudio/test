@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- スクロール進捗バー -->
+    <div class="scroll-progress"></div>
+
+    <!-- カーソルフォロワー -->
+    <div class="cursor-follower"></div>
+
     <!-- ナビゲーションバー -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -44,6 +50,7 @@
     <!-- ファーストビュー / ヒーローセクション -->
     <section class="hero" id="hero">
         <div class="hero-background"></div>
+        <div class="hero-particles"></div>
         <div class="hero-content">
             <h1 class="hero-title">自動化工業ゲーム × アニメ調オープンワールド × RPG</h1>
             <div class="hero-cta">
@@ -85,10 +92,22 @@
         </div>
     </section>
 
-    <!-- ゲームの特徴 -->
+    <!-- ゲーム概要とゲームの特徴 -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">ゲームの特徴</h2>
+            <h2 class="section-title">ゲーム概要</h2>
+            <div class="overview-content">
+                <div class="overview-concept">
+                    <h3 class="overview-label">コンセプト</h3>
+                    <p class="overview-text">自動化工業ゲーム × アニメ調オープンワールド × RPG</p>
+                </div>
+                <div class="overview-release">
+                    <h3 class="overview-label">リリース情報</h3>
+                    <p class="overview-text">2026年夏 / Steam（Win/Mac/Linux）/ 2000円前後</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 4rem;">ゲームの特徴</h2>
 
             <!-- 歯車システム -->
             <div class="feature-block">
