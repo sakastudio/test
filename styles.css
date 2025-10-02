@@ -731,7 +731,7 @@ section {
 }
 
 .feature-content {
-    padding: 2.5rem 3.5rem 2.5rem 0;
+    padding: 3rem;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     border-radius: 24px;
@@ -745,7 +745,7 @@ section {
 }
 
 .feature-block.reverse .feature-content {
-    padding: 2.5rem 0 2.5rem 3.5rem;
+    padding: 3rem;
 }
 
 .feature-title {
@@ -771,8 +771,8 @@ section {
 }
 
 .feature-list li {
-    padding: 0.9rem 0;
-    padding-left: 3rem;
+    padding: 1rem 0;
+    padding-left: 3.5rem;
     position: relative;
     color: rgba(255, 255, 255, 0.9);
     font-size: 1.4rem;
