@@ -121,19 +121,19 @@ const charactersData = {
     1: {
         name: 'ヨリ',
         role: '惑星セレスタルの姫(主人公)',
-        image: 'assets/images/character1.png',
+        image: 'assets/images/character-main-full.png',
         description: '惑星セレスタルの第二王女。理由も分からぬまま惑星アルカディアに追放さる。最初は何もできないお嬢様だったが、サポートAIや親友に助けてもらいながら工業化を進める。'
     },
     2: {
         name: 'エレノ',
         role: 'サポートAI',
-        image: 'assets/images/character2.png',
+        image: 'assets/images/character-ai-full.png',
         description: 'ヨリの世話係として一緒に惑星アルカディアについてきた汎用サポートAIシステム。',
     },
     3: {
         name: 'クルア',
         role: '親友(惑星アルカディアの生き残り)',
-        image: 'assets/images/character3.png',
+        image: 'assets/images/character-friend-full.png',
         description: '運動神経がよく、心底明るくておおらか。人懐こくてお喋り。お金が大好きで、生きるためには何でもする。',
     }
 };
@@ -186,41 +186,75 @@ if (characterDisplay) {
 }
 
 // ===== 高度なスクロールアニメーション =====
-const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -80px 0px'
-};
 
-const observer = new IntersectionObserver((entries) => {
+// ゲームの特徴用 - タイミングを遅く、ブラー効果追加
+const featureObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // フェードイン + スライドアップアニメーション
-            if (entry.target.classList.contains('feature-block')) {
-                entry.target.classList.add('animate-in');
-            } else {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-
-            // 一度アニメーションしたら監視解除
-            observer.unobserve(entry.target);
+            entry.target.classList.add('animate-in');
+            featureObserver.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, {
+    threshold: 0.25,
+    rootMargin: '0px 0px -150px 0px'
+});
 
-// アニメーション対象の要素
-const animateElements = document.querySelectorAll(
-    '.feature-block, .character-icon, .mod-feature, .gallery-item, .social-link, .overview-concept, .overview-release'
-);
+// キャラクター、mod、ギャラリー、コミュニティ用 - タイミングを早く
+const quickObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.filter = 'blur(0px)';
+            quickObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px 50px 0px'
+});
 
-animateElements.forEach((el, index) => {
-    // 初期状態を設定
-    if (!el.classList.contains('feature-block')) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(50px)';
-        el.style.transition = `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s`;
-    }
-    observer.observe(el);
+// 概要用 - 通常のタイミング
+const overviewObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            overviewObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
+});
+
+// 要素を分類して監視
+const featureBlocks = document.querySelectorAll('.feature-block');
+const quickAnimateElements = document.querySelectorAll('.character-icon, .mod-feature, .gallery-item, .social-link');
+const overviewElements = document.querySelectorAll('.overview-concept, .overview-release');
+
+// ゲームの特徴にブラー効果を追加
+featureBlocks.forEach(el => {
+    el.style.filter = 'blur(10px)';
+    featureObserver.observe(el);
+});
+
+// キャラクター、mod、ギャラリー、コミュニティ - 早いタイミング
+quickAnimateElements.forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(50px)';
+    el.style.filter = 'blur(5px)';
+    el.style.transition = `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s, filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s`;
+    quickObserver.observe(el);
+});
+
+// 概要要素
+overviewElements.forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(50px)';
+    el.style.transition = `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s`;
+    overviewObserver.observe(el);
 });
 
 // ===== パララックス効果 =====
@@ -235,46 +269,65 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== ギャラリー画像クリック(拡大表示) =====
-const galleryItems = document.querySelectorAll('.gallery-item img');
+// ページロード後に設定（DOMが完全に読み込まれた後）
+function setupGalleryModal() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
 
-galleryItems.forEach(img => {
-    img.addEventListener('click', () => {
-        const modal = document.createElement('div');
-        modal.className = 'modal active';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <button class="modal-close">&times;</button>
-                <img src="${img.src}" alt="${img.alt}" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);">
-            </div>
-        `;
+    galleryItems.forEach(item => {
+        item.style.cursor = 'pointer';
 
-        document.body.appendChild(modal);
-        document.body.style.overflow = 'hidden';
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-        const closeBtn = modal.querySelector('.modal-close');
-        closeBtn.addEventListener('click', () => {
-            modal.remove();
-            document.body.style.overflow = 'auto';
-        });
+            const img = this.querySelector('img');
+            if (!img) return;
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.style.zIndex = '9999';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <img src="${img.src}" alt="${img.alt}" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);">
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+
+            const closeBtn = modal.querySelector('.modal-close');
+            closeBtn.addEventListener('click', () => {
                 modal.remove();
                 document.body.style.overflow = 'auto';
-            }
-        });
+            });
 
-        // ESCキーで閉じる
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') {
-                modal.remove();
-                document.body.style.overflow = 'auto';
-                document.removeEventListener('keydown', handleEscape);
-            }
-        };
-        document.addEventListener('keydown', handleEscape);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // ESCキーで閉じる
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+        });
     });
-});
+}
+
+// DOMが完全に読み込まれた後に実行
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupGalleryModal);
+} else {
+    setupGalleryModal();
+}
 
 // ===== セクションタイトルの文字アニメーション =====
 function animateSectionTitles() {
@@ -313,7 +366,7 @@ charStyle.textContent = `
 `;
 document.head.appendChild(charStyle);
 
-// タイトルアニメーション実行
+// タイトルアニメーション実行 - タイミングを遅く
 const titleObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && entry.target.children.length === 0) {
@@ -334,7 +387,10 @@ const titleObserver = new IntersectionObserver((entries) => {
             titleObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.5 });
+}, {
+    threshold: 0.8,
+    rootMargin: '0px 0px -100px 0px'
+});
 
 document.querySelectorAll('.section-title').forEach(title => {
     titleObserver.observe(title);
