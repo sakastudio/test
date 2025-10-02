@@ -216,7 +216,14 @@ a {
 
 .release-info {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: #1e293b;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff,
+        0 0 8px rgba(255, 255, 255, 0.8);
+    font-weight: 600;
 }
 
 .scroll-indicator {
@@ -267,6 +274,11 @@ a {
     font-size: 1.1rem;
 }
 
+.btn-hero-large {
+    padding: 1.5rem 3rem;
+    font-size: 1.65rem;
+}
+
 .btn-mod-large {
     padding: 1.5rem 3rem;
     font-size: 1.8rem;
@@ -280,6 +292,11 @@ a {
 .btn-icon {
     width: 20px;
     height: 20px;
+}
+
+.btn-icon-hero {
+    width: 28px;
+    height: 28px;
 }
 
 .btn-icon-large {
@@ -305,6 +322,17 @@ a {
 }
 
 .btn-secondary:hover {
+    background: rgba(30, 41, 59, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn-secondary-white {
+    background: white;
+    color: #1e293b;
+    border: 2px solid #1e293b;
+}
+
+.btn-secondary-white:hover {
     background: rgba(30, 41, 59, 0.1);
     transform: translateY(-2px);
 }
@@ -825,24 +853,22 @@ section {
 
 .btn-press-main {
     width: 100%;
-    max-width: 500px;
-    padding: 1.2rem 2.5rem;
-    font-size: 1.4rem;
+    max-width: 600px;
+    padding: 1.5rem 3rem;
+    font-size: 1.8rem;
     text-align: center;
 }
 
 .press-sub-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: center;
     margin-bottom: 3rem;
 }
 
 .btn-press-sub {
-    flex: 1;
-    max-width: 280px;
-    padding: 1rem 1.5rem;
-    font-size: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
     text-align: center;
 }
 
