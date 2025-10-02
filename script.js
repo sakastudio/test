@@ -276,52 +276,6 @@ galleryItems.forEach(img => {
     });
 });
 
-// ===== パーティクルエフェクト(歯車) =====
-function createGearParticles() {
-    const heroParticles = document.querySelector('.hero-particles');
-    if (!heroParticles) return;
-
-    const particleCount = 15;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        particle.style.width = Math.random() * 40 + 20 + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.opacity = Math.random() * 0.3 + 0.1;
-        particle.innerHTML = '⚙️';
-        particle.style.fontSize = particle.style.width;
-        particle.style.animation = `floatGear ${Math.random() * 20 + 15}s linear infinite`;
-        particle.style.animationDelay = Math.random() * 5 + 's';
-
-        heroParticles.appendChild(particle);
-    }
-}
-
-// 歯車フロートアニメーション
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes floatGear {
-        0% {
-            transform: translateY(0) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-50px) rotate(180deg);
-        }
-        100% {
-            transform: translateY(0) rotate(360deg);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ページロード時にパーティクル作成
-window.addEventListener('load', () => {
-    createGearParticles();
-});
-
 // ===== セクションタイトルの文字アニメーション =====
 function animateSectionTitles() {
     const sectionTitles = document.querySelectorAll('.section-title');
