@@ -173,44 +173,146 @@ a {
     transform: translateX(-50%) scaleX(1);
 }
 
-/* ===== 言語切り替えボタン ===== */
+/* ===== 言語切り替えドロップダウン ===== */
 .language-switcher {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 0.3rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    position: relative;
 }
 
-.lang-btn {
+.lang-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.lang-dropdown-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.lang-current-flag {
     font-size: 1.3rem;
-    padding: 0.4rem 0.6rem;
+    line-height: 1;
+}
+
+.lang-current-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.lang-dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    transition: var(--transition-base);
+    opacity: 0.6;
+}
+
+.language-switcher.active .lang-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 160px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 16px;
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition-base);
+    z-index: 1000;
+    overflow: hidden;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.language-switcher.active .lang-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.8rem 1rem;
     border: none;
     background: transparent;
     cursor: pointer;
-    border-radius: 8px;
     transition: var(--transition-base);
-    opacity: 0.6;
-    filter: grayscale(0.3);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    text-align: left;
 }
 
-.lang-btn:hover {
-    opacity: 1;
-    filter: grayscale(0);
-    transform: scale(1.1);
+.lang-option:hover {
     background: rgba(102, 126, 234, 0.1);
 }
 
-.lang-btn.active {
-    opacity: 1;
-    filter: grayscale(0);
+.lang-option.active {
     background: var(--gradient-primary);
-    box-shadow: var(--shadow-sm);
-    transform: scale(1.05);
+    color: white;
+}
+
+.lang-option.active .lang-option-flag {
+    filter: none;
+}
+
+.lang-option-flag {
+    font-size: 1.3rem;
+    line-height: 1;
+    filter: grayscale(0.2);
+    transition: var(--transition-base);
+}
+
+.lang-option:hover .lang-option-flag {
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.lang-option-name {
+    font-weight: 600;
+    flex: 1;
+}
+
+/* スクロールバーのカスタマイズ（ドロップダウンメニュー用） */
+.lang-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lang-dropdown-menu::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+.lang-dropdown-menu::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 3px;
+}
+
+.lang-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-cosmic);
 }
 
 .hamburger {
@@ -1753,6 +1855,20 @@ section {
         right: 4.5rem;
         top: 50%;
         transform: translateY(-50%);
+    }
+
+    .lang-current-name {
+        display: none;
+    }
+
+    .lang-dropdown-menu {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    .language-switcher.active .lang-dropdown-menu {
+        transform: translateX(-50%) translateY(0);
     }
 
     .feature-block,

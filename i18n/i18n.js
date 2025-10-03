@@ -177,36 +177,72 @@ function getNestedValue(obj, path) {
     return value;
 }
 
-// ===== 言語切り替えボタンのセットアップ =====
+// ===== 言語切り替えドロップダウンのセットアップ =====
 function setupLanguageSwitcher() {
     const switcher = document.getElementById('languageSwitcher');
-    if (!switcher) return;
+    const dropdownBtn = document.getElementById('langDropdownBtn');
+    const dropdownMenu = document.getElementById('langDropdownMenu');
+    const options = document.querySelectorAll('.lang-option');
 
-    const buttons = switcher.querySelectorAll('.lang-btn');
+    if (!switcher || !dropdownBtn || !dropdownMenu) return;
 
-    buttons.forEach(button => {
-        button.addEventListener('click', async () => {
-            const lang = button.getAttribute('data-lang');
+    // ドロップダウンボタンクリックでメニュー開閉
+    dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        switcher.classList.toggle('active');
+    });
+
+    // 言語オプションクリック
+    options.forEach(option => {
+        option.addEventListener('click', async () => {
+            const lang = option.getAttribute('data-lang');
             await setLanguage(lang);
+            switcher.classList.remove('active');
         });
+    });
+
+    // ドロップダウン外をクリックしたら閉じる
+    document.addEventListener('click', (e) => {
+        if (!switcher.contains(e.target)) {
+            switcher.classList.remove('active');
+        }
+    });
+
+    // ESCキーで閉じる
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            switcher.classList.remove('active');
+        }
     });
 }
 
-// ===== 言語切り替えボタンのUI更新 =====
+// ===== 言語切り替えドロップダウンのUI更新 =====
 function updateLanguageSwitcherUI(language) {
-    const switcher = document.getElementById('languageSwitcher');
-    if (!switcher) return;
+    const currentFlag = document.getElementById('langCurrentFlag');
+    const currentName = document.getElementById('langCurrentName');
+    const options = document.querySelectorAll('.lang-option');
 
-    const buttons = switcher.querySelectorAll('.lang-btn');
+    if (!currentFlag || !currentName) return;
 
-    buttons.forEach(button => {
-        const lang = button.getAttribute('data-lang');
+    // 選択された言語のオプションを探す
+    let selectedOption = null;
+    options.forEach(option => {
+        const lang = option.getAttribute('data-lang');
         if (lang === language) {
-            button.classList.add('active');
+            option.classList.add('active');
+            selectedOption = option;
         } else {
-            button.classList.remove('active');
+            option.classList.remove('active');
         }
     });
+
+    // ドロップダウンボタンの表示を更新
+    if (selectedOption) {
+        const flag = selectedOption.getAttribute('data-flag');
+        const name = selectedOption.getAttribute('data-name');
+        currentFlag.textContent = flag;
+        currentName.textContent = name;
+    }
 }
 
 // ===== 現在の言語を取得 =====
