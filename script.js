@@ -116,42 +116,34 @@ function closeTrailerModal() {
 const characterIcons = document.querySelectorAll('.character-icon');
 const characterDisplay = document.getElementById('characterDisplay');
 
-// キャラクターデータ
-const charactersData = {
-    1: {
-        name: 'ヨリ',
-        role: '惑星セレスタルの姫(主人公)',
-        image: 'assets/images/character-main-full.png',
-        description: '惑星セレスタルの第二王女。理由も分からぬまま惑星アルカディアに追放さる。最初は何もできないお嬢様だったが、サポートAIや親友に助けてもらいながら工業化を進める。'
-    },
-    2: {
-        name: 'エレノ',
-        role: 'サポートAI',
-        image: 'assets/images/character-ai-full.png',
-        description: 'ヨリの世話係として一緒に惑星アルカディアについてきた汎用サポートAIシステム。',
-    },
-    3: {
-        name: 'クルア',
-        role: '親友(惑星アルカディアの生き残り)',
-        image: 'assets/images/character-friend-full.png',
-        description: '運動神経がよく、心底明るくておおらか。人懐こくてお喋り。お金が大好きで、生きるためには何でもする。',
-    }
+// キャラクター画像データ（変更なし）
+const characterImages = {
+    1: 'assets/images/character-main-full.png',
+    2: 'assets/images/character-ai-full.png',
+    3: 'assets/images/character-friend-full.png'
 };
 
-// キャラクター詳細を表示する関数
+// キャラクター詳細を表示する関数（i18n対応）
 function displayCharacter(characterId) {
-    const character = charactersData[characterId];
+    // i18nからキャラクターデータを取得
+    const character = window.i18n ? window.i18n.t(`characters.data.${characterId}`) : null;
+
+    if (!character || typeof character !== 'object') {
+        console.warn(`Character data not found for ID: ${characterId}`);
+        return;
+    }
+
+    const image = characterImages[characterId];
     const placeholderSrc = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600'%3E%3Crect fill='%23334155' width='400' height='600'/%3E%3Ctext fill='%2394a3b8' font-family='sans-serif' font-size='24' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E${character.name}%3C/text%3E%3C/svg%3E`;
 
     characterDisplay.innerHTML = `
         <div class="character-detail-content">
             <div class="character-detail-image">
-                <img src="${character.image}" alt="${character.name}" onerror="this.src='${placeholderSrc}'">
+                <img src="${image}" alt="${character.name}" onerror="this.src='${placeholderSrc}'">
             </div>
             <div class="character-detail-info">
                 <h3>${character.name}</h3>
                 <p class="role">${character.role}</p>
-
                 <p>${character.description}</p>
             </div>
         </div>
@@ -162,6 +154,18 @@ function displayCharacter(characterId) {
     setTimeout(() => {
         characterDisplay.style.opacity = '1';
     }, 10);
+}
+
+// キャラクター名を更新する関数
+function updateCharacterNames() {
+    const characterNames = document.querySelectorAll('[data-character-name]');
+    characterNames.forEach(nameElement => {
+        const characterId = nameElement.getAttribute('data-character-name');
+        const name = window.i18n ? window.i18n.t(`characters.data.${characterId}.name`) : null;
+        if (name) {
+            nameElement.textContent = name;
+        }
+    });
 }
 
 // キャラクターアイコンクリック
