@@ -353,7 +353,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/images/main-visual.png');
+    background-image: url('/assets/images/main-visual.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -633,7 +633,7 @@ section {
 /* ===== 動画セクション ===== */
 .video-section {
     position: relative;
-    background-image: url('assets/images/bg-trailer.png');
+    background-image: url('/assets/images/bg-trailer.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -796,7 +796,7 @@ section {
 /* ===== ゲームの特徴 ===== */
 .features {
     position: relative;
-    background-image: url('assets/images/bg-game-feature.png');
+    background-image: url('/assets/images/bg-game-feature.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -972,7 +972,7 @@ section {
 /* ===== ストーリー ===== */
 .story {
     position: relative;
-    background-image: url('assets/images/bg-story.png');
+    background-image: url('/assets/images/bg-story.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1035,7 +1035,7 @@ section {
 /* ===== キャラクター ===== */
 .characters {
     position: relative;
-    background-image: url('assets/images/bg-character.png');
+    background-image: url('/assets/images/bg-character.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1237,7 +1237,7 @@ section {
 /* ===== mod開発 ===== */
 .mod {
     position: relative;
-    background-image: url('assets/images/bg-mod-dev.png');
+    background-image: url('/assets/images/bg-mod-dev.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1344,7 +1344,7 @@ section {
 /* ===== ギャラリー ===== */
 .gallery {
     position: relative;
-    background-image: url('assets/images/bg-screenshots.png');
+    background-image: url('/assets/images/bg-screenshots.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1419,7 +1419,7 @@ section {
 /* ===== プレスキット ===== */
 .press {
     position: relative;
-    background-image: url('assets/images/bg-media.png');
+    background-image: url('/assets/images/bg-media.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1516,7 +1516,7 @@ section {
 /* ===== コミュニティ ===== */
 .community {
     position: relative;
-    background-image: url('assets/images/bg-commyunity.png');
+    background-image: url('/assets/images/bg-commyunity.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1633,7 +1633,7 @@ section {
 /* ===== 最終CTA ===== */
 .final-cta {
     position: relative;
-    background-image: url('assets/images/bg-final-cta.png');
+    background-image: url('/assets/images/bg-final-cta.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

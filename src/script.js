@@ -118,9 +118,9 @@ const characterDisplay = document.getElementById('characterDisplay');
 
 // キャラクター画像データ（変更なし）
 const characterImages = {
-    1: 'assets/images/character-main-full.png',
-    2: 'assets/images/character-ai-full.png',
-    3: 'assets/images/character-friend-full.png'
+    1: '/assets/images/character-main-full.png',
+    2: '/assets/images/character-ai-full.png',
+    3: '/assets/images/character-friend-full.png'
 };
 
 // キャラクター詳細を表示する関数（i18n対応）
@@ -494,3 +494,7 @@ document.querySelectorAll('.feature-image, .character-detail-image').forEach(el 
         el.style.transform = '';
     });
 });
+
+// i18nスクリプトから再利用できるようにグローバルへ公開
+window.displayCharacter = displayCharacter;
+window.updateCharacterNames = updateCharacterNames;
