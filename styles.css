@@ -508,6 +508,10 @@ section {
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     position: relative;
     display: inline-block;
+    /* アニメーション初期状態 */
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(5px);
     width: 100%;
 }
 

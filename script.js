@@ -235,7 +235,7 @@ const overviewObserver = new IntersectionObserver((entries) => {
 
 // 要素を分類して監視
 const featureBlocks = document.querySelectorAll('.feature-block');
-const quickAnimateElements = document.querySelectorAll('.character-icon, .mod-feature, .gallery-item, .social-link');
+const quickAnimateElements = document.querySelectorAll('.section-title, .character-icon, .mod-feature, .gallery-item, .social-link');
 const overviewElements = document.querySelectorAll('.overview-concept, .overview-release');
 
 // ゲームの特徴を監視（ブラーはCSSで画像のみに適用）
