@@ -1112,7 +1112,7 @@ section {
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 1.5rem;
-    border: 5px solid transparent;
+    border: 5px solid #444444;
     transition: var(--transition-base);
     box-shadow: var(--shadow-lg);
     position: relative;
@@ -1135,17 +1135,17 @@ section {
 }
 
 .character-icon.active .character-icon-image {
-    border-color: #ffffff;
-    box-shadow: var(--shadow-xl), 0 0 40px rgba(255, 255, 255, 0.6);
+    border-color: #3b82f6;
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.6);
     animation: pulseGlow 2s ease-in-out infinite;
 }
 
 @keyframes pulseGlow {
     0%, 100% {
-        box-shadow: var(--shadow-xl), 0 0 40px rgba(255, 255, 255, 0.6);
+        box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.6);
     }
     50% {
-        box-shadow: var(--shadow-xl), 0 0 60px rgba(255, 255, 255, 0.8);
+        box-shadow: var(--shadow-xl), 0 0 60px rgba(59, 130, 246, 0.8);
     }
 }
 
