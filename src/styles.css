@@ -186,6 +186,37 @@ a {
     transform: translateX(-50%) scaleX(1);
 }
 
+/* ナビゲーションアイコンリンク */
+.nav-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon {
+    width: 22px;
+    height: 22px;
+    transition: var(--transition-fast);
+}
+
+.nav-icon-link:hover .nav-icon {
+    transform: scale(1.1);
+}
+
+/* 外部リンクアイコン */
+.external-link-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    vertical-align: middle;
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover .external-link-icon {
+    opacity: 1;
+}
+
 /* ===== 言語切り替えドロップダウン ===== */
 .language-switcher {
     position: relative;
